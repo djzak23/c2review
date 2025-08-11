@@ -8,6 +8,9 @@ import WidgetPage from "./components/widget/WidgetPage";
 import routes from "tempo-routes";
 
 function App() {
+  const tempoRoutes = useRoutes(routes);
+  const showTempo = import.meta.env.VITE_TEMPO === "true";
+
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <>
@@ -18,7 +21,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/widget" element={<WidgetPage />} />
         </Routes>
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+        {showTempo && tempoRoutes}
       </>
     </Suspense>
   );
